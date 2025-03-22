@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksplorasi Alam Semesta - Presentasi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        :root {
+            --r-background-color: #02001c;
+            --r-heading-color: #e0f2ff;
+            --r-main-color: #e0f2ff;
+            --r-link-color: #42affa;
+        }
+        
+        .reveal {
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        .reveal h1, 
+        .reveal h2, 
+        .reveal h3 {
+            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(66, 175, 250, 0.5);
+        }
+        
+        .reveal h1 {
+            font-size: 2.5em;
+        }
+        
+        .reveal .slides {
+            background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .slide-background {
+            background-color: rgba(2, 0, 28, 0.8);
+        }
+        
+        .content-box {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(66, 175, 250, 0.3);
+        }
+        
+        .planet {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 10px;
+            display: inline-block;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .planet.earth {
+            background: radial-gradient(circle at 30% 30%, #1e90ff, #172a88);
+        }
+        
+        .planet.mars {
+            background: radial-gradient(circle at 30% 30%, #ff4500, #8b0000);
+        }
+        
+        .planet.jupiter {
+            background: radial-gradient(circle at 30% 30%, #ffd700, #cd853f);
+        }
+        
+        .planet.saturn {
+            background: radial-gradient(circle at 30% 30%, #f0e68c, #daa520);
+            position: relative;
+        }
+        
+        .planet.saturn::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 30px;
+            background: rgba(255, 215, 0, 0.3);
+            left: -15px;
+            top: 60px;
+            border-radius: 50%;
+            transform: rotateX(70deg);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        .slide-in-right {
+            transform: translateX(100px);
+            opacity: 0;
+            animation: slideInRight 1s forwards;
+        }
+        
+        @keyframes slideInRight {
+            0% { 
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            100% { 
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .zoom-in {
+            transform: scale(0.5);
+            opacity: 0;
+            animation: zoomIn 1s forwards;
+        }
+        
+        @keyframes zoomIn {
+            0% { 
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .fact-item {
+            margin-bottom: 15px;
+            border-left: 3px solid #42affa;
+            padding-left: 10px;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .space-image {
+            border-radius: 10px;
+            border: 2px solid rgba(66, 175, 250, 0.5);
+            max-width: 100%;
+            max-height: 400px;
+        }
+        
+        .galaxy-container {
+            position: relative;
+            height: 400px;
+            width: 400px;
+            margin: 0 auto;
+            animation: rotate 100s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .galaxy-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #ffea00, #ff6600);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 234, 0, 0.7);
+        }
+        
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+        
+        .orbit-1 { width: 150px; height: 150px; }
+        .orbit-2 { width: 220px; height: 220px; }
+        .orbit-3 { width: 300px; height: 300px; }
+        .orbit-4 { width: 380px; height: 380px; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1: Cover -->
+            <section data-transition="zoom">
+                <div class="stars-container"></div>
+                <h1 class="r-fit-text">EKSPLORASI ALAM SEMESTA</h1>
+                <h3>Perjalanan Menuju Batas Tak Terhingga</h3>
+                <p><small>Klik untuk melanjutkan</small></p>
+            </section>
+            
+            <!-- Slide 2: Daftar Isi -->
+            <section>
+                <h2>Perjalanan Kosmik Kita</h2>
+                <div class="content-box">
+                    <ul>
+                        <li class="fragment fade-in">Tata Surya Kita</li>
+                        <li class="fragment fade-in">Galaksi Bima Sakti</li>
+                        <li class="fragment fade-in">Planet-Planet Menakjubkan</li>
+                        <li class="fragment fade-in">Fenomena Kosmik</li>
+                        <li class="fragment fade-in">Masa Depan Eksplorasi Ruang Angkasa</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Slide 3: Tata Surya -->
+            <section>
+                <h2>TATA SURYA KITA</h2>
+                <div class="content-box">
+                    <div class="galaxy-container">
+                        <div class="galaxy-center"></div>
+                        <div class="orbit orbit-1"></div>
+                        <div class="orbit orbit-2"></div>
+                        <div class="orbit orbit-3"></div>
+                        <div class="orbit orbit-4"></div>
+                    </div>
+                    <p class="fragment fade-in">Tata surya kita berisi 8 planet, lebih dari 200 bulan, dan jutaan asteroid</p>
+                </div>
+            </section>
+            
+            <!-- Slide 4: Matahari -->
+            <section>
+                <h2>MATAHARI: PUSAT TATA SURYA</h2>
+                <div class="content-box">
+                    <div class="row">
+                        <div class="col" style="float: left; width: 40%;">
+                            <img class="space-image" src="https://images.unsplash.com/photo-1614642264762-d0a3b8bf3700?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600" alt="Matahari">
+                        </div>
+                        <div class="col" style="float: right; width: 55%;">
+                            <div class="fact-item fragment fade-in">Diameter: 1.4 juta kilometer (109x Bumi)</div>
+                            <div class="fact-item fragment fade-in">Suhu permukaan: 5.500°C</div>
+                            <div class="fact-item fragment fade-in">Suhu inti: 15 juta °C</div>
+                            <div class="fact-item fragment fade-in">Usia: 4.6 miliar tahun</div>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 5: Planet-Planet -->
+            <section>
+                <h2>PLANET-PLANET MENAKJUBKAN</h2>
+                <div class="content-box">
+                    <div class="fragment fade-in">
+                        <div class="planet earth"></div>
+                        <div class="planet mars"></div>
+                        <div class="planet jupiter"></div>
+                        <div class="planet saturn"></div>
+                    </div>
+                    <p class="fragment fade-in">Setiap planet memiliki keunikan masing-masing</p>
+                </div>
+            </section>
+            
+            <!-- Slide 6: Bumi -->
+            <section>
+                <h2>BUMI: RUMAH KITA</h2>
+                <div class="content-box">
+                    <div class="row">
+                        <div class="col" style="float: left; width: 45%;">
+                            <div class="fact-item fragment fade-in">Satu-satunya planet dengan air dalam bentuk cair</div>
+                            <div class="fact-item fragment fade-in">Atmosfer yang melindungi dari radiasi matahari</div>
+                            <div class="fact-item fragment fade-in">Medan magnet yang kuat</div>
+                            <div class="fact-item fragment fade-in">Lebih dari 8 juta spesies makhluk hidup</div>
+                        </div>
+                        <div class="col" style="float: right; width: 50%;">
+                            <img class="space-image fragment zoom-in" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600" alt="Bumi">
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 7: Mars -->
+            <section>
+                <h2>MARS: PLANET MERAH</h2>
+                <div class="content-box">
+                    <div class="row">
+                        <div class="col" style="float: left; width: 50%;">
+                            <img class="space-image fragment zoom-in" src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600" alt="Mars">
+                        </div>
+                        <div class="col" style="float: right; width: 45%;">
+                            <div class="fact-item fragment fade-in">Target utama misi kolonisasi manusia</div>
+                            <div class="fact-item fragment fade-in">Memiliki hari yang hampir sama dengan Bumi (24.6 jam)</div>
+                            <div class="fact-item fragment fade-in">Gunung tertinggi di tata surya: Olympus Mons</div>
+                            <div class="fact-item fragment fade-in">Bukti adanya air di masa lalu</div>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 8: Fenomena Kosmik -->
+            <section>
+                <h2>FENOMENA KOSMIK</h2>
+                <div class="content-box">
+                    <div class="row">
+                        <div class="col" style="text-align: center;">
+                            <img class="space-image fragment fade-in" src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600" alt="Black Hole">
+                            <p class="fragment fade-in">Lubang Hitam</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col" style="float: left; width: 45%; text-align: center;">
+                            <img class="space-image fragment fade-in" src="https://images.unsplash.com/photo-1543722530-d2c3201371e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600" alt="Nebula">
+                            <p class="fragment fade-in">Nebula</p>
+                        </div>
+                        <div class="col" style="float: right; width: 45%; text-align: center;">
+                            <img class="space-image fragment fade-in" src="https://images.unsplash.com/photo-1506703719100-a0b3a3c845c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600" alt="Aurora">
+                            <p class="fragment fade-in">Aurora</p>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 9: Kolonisasi Mars -->
+            <section>
+                <h2>MASA DEPAN: KOLONISASI MARS</h2>
+                <div class="content-box">
+                    <div class="row">
+                        <div class="col" style="float: left; width: 45%;">
+                            <div class="fact-item fragment fade-in">Misi berawak pertama direncanakan tahun 2030-an</div>
+                            <div class="fact-item fragment fade-in">Tantangan: radiasi, gravitasi rendah, isolasi</div>
+                            <div class="fact-item fragment fade-in">Habitat akan dibangun menggunakan sumber daya lokal</div>
+                            <div class="fact-item fragment fade-in">Manusia akan menjadi spesies multi-planet</div>
+                        </div>
+                        <div class="col" style="float: right; width: 50%;">
+                            <img class="space-image fragment zoom-in" src="https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600" alt="Mars Colony Concept">
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 10: Closing -->
+            <section>
+                <h1>TERIMA KASIH</h1>
+                <h3>Eksplorasi Berlanjut...</h3>
+                <div class="content-box fragment fade-in">
+                    <p>"Langit tidak lagi menjadi batas, tetapi hanya awal perjalanan."</p>
+                    <p style="text-align: right;">— Konstantin Tsiolkovsky</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        // Inisialisasi Reveal.js
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+            transition: 'convex', // none/fade/slide/convex/concave/zoom
+            
+            // Pengaturan konfigurasi tambahan
+            backgroundTransition: 'fade',
+            autoSlide: 0, // Jangan otomatis bergerak
+            mouseWheel: false,
+            
+            // Plugins jika diperlukan
+            dependencies: []
+        });
+        
+        // Menambahkan bintang-bintang ke latar belakang
+        window.onload = function() {
+            const starsContainer = document.querySelector('.stars-container');
+            if (starsContainer) {
+                for (let i = 0; i < 100; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.width = `${Math.random() * 3}px`;
+                    star.style.height = star.style.width;
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    star.style.animationDelay = `${Math.random() * 3}s`;
+                    starsContainer.appendChild(star);
+                }
+            }
+        };
+    </script>
+</body>
+</html>
